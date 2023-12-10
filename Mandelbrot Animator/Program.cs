@@ -20,7 +20,7 @@ namespace Mandelbrot_Animator
 
             Stopwatch stopwatch = new Stopwatch();
 
-            for (int i = 77; i < totalFrames; i++){
+            for (int i = 82; i < totalFrames; i++){
 
                 float zoom = getZoom(i, framesPerZoomDouble);
 
@@ -41,7 +41,7 @@ namespace Mandelbrot_Animator
 
                 float processingTime = stopwatch.ElapsedMilliseconds / 1000;
                 string frameName = numberName(i);
-                string frameNameLong = frameName + " \\ " + numberName(totalFrames);
+                string frameNameLong = frameName + " / " + numberName(totalFrames);
 
 
                 img.Save($"C:\\AnimationFrames\\1\\{frameName}.png");
@@ -63,7 +63,7 @@ namespace Mandelbrot_Animator
             Brush b1 = new SolidBrush(Color.Black);
             Brush b2 = new SolidBrush(Color.White);
 
-            g.FillRectangle(b2, 0, 0, 530, 210);
+            g.FillRectangle(b2, 0, 0, 510, 215);
 
             string text = $"Frame: {name}\n"
                         + $"CentreRe: {centreRe}\n"
