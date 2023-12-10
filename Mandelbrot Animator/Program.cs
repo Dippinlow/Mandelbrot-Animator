@@ -24,7 +24,7 @@ namespace Mandelbrot_Animator
 
                 float zoom = getZoom(i, framesPerZoomDouble);
 
-                int maxIt = getMaxIt(zoom);
+                int maxIt = getMaxIt(i);
                 
                 MandelbrotFrame m = new MandelbrotFrame(
                     1920, 1080, 
@@ -44,10 +44,10 @@ namespace Mandelbrot_Animator
                 string frameNameLong = frameName + " / " + numberName(totalFrames);
 
 
-                img.Save($"C:\\AnimationFrames\\1\\{frameName}.png");
+                img.Save($"C:\\AnimationFrames\\3\\{frameName}.png");
 
                 img = addData(img, centreRe, centreIm, zoom, maxIt, processingTime, frameNameLong);
-                img.Save($"C:\\AnimationFrames\\2\\{frameName}.png");
+                img.Save($"C:\\AnimationFrames\\4\\{frameName}.png");
 
                 Console.WriteLine(numberName(i) + " / " + numberName(totalFrames));
 
@@ -84,9 +84,12 @@ namespace Mandelbrot_Animator
 
         }
 
-        private static int getMaxIt(float zoom)
+        private static int getMaxIt(int frameNumber)
         {
-            float maxIt = 100 + zoom / 4;
+            //float maxIt = 100 + zoom / 4;
+            //return (int)Math.Round(maxIt);
+
+            float maxIt = (float)9.8 * frameNumber + 100;
             return (int)Math.Round(maxIt);
         }
 
