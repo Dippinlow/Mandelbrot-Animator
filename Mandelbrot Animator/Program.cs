@@ -30,7 +30,7 @@ namespace Mandelbrot_Animator
                 Bitmap img = m.processImage();
                 
 
-                img.Save($"D:\\ImageSpam\\{numberName(i)}.png");
+                img.Save($"C:\\ImageSpam\\{numberName(i)}.png");
             }   
         }
 
