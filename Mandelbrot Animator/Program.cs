@@ -20,7 +20,7 @@ namespace Mandelbrot_Animator
 
             Stopwatch stopwatch = new Stopwatch();
 
-            for (int i = 246; i < totalFrames; i++){
+            for (int i = 255; i < totalFrames; i++){
 
                 float zoom = getZoom(i, framesPerZoomDouble);
 
@@ -68,7 +68,7 @@ namespace Mandelbrot_Animator
             string text = $"Frame: {name}\n"
                         + $"CentreRe: {centreRe}\n"
                         + $"CentreIm: {centreIm}\n"
-                        + $"Zoom: x{zoom}\n"
+                        + $"Zoom: {zoom}\n"
                         + $"Max Iterations: {maxIt}\n"
                         + $"Time to process frame: {processingTime}s";
 
