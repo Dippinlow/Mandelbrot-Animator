@@ -20,7 +20,7 @@ namespace Mandelbrot_Animator
 
             Stopwatch stopwatch = new Stopwatch();
 
-            for (int i = 0; i < totalFrames; i++){
+            for (int i = 77; i < totalFrames; i++){
 
                 float zoom = getZoom(i, framesPerZoomDouble);
 
@@ -63,7 +63,7 @@ namespace Mandelbrot_Animator
             Brush b1 = new SolidBrush(Color.Black);
             Brush b2 = new SolidBrush(Color.White);
 
-            g.FillRectangle(b2, 0, 0, 520, 210);
+            g.FillRectangle(b2, 0, 0, 530, 210);
 
             string text = $"Frame: {name}\n"
                         + $"CentreRe: {centreRe}\n"
