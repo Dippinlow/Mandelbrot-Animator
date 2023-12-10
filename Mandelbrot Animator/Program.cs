@@ -20,7 +20,7 @@ namespace Mandelbrot_Animator
 
             Stopwatch stopwatch = new Stopwatch();
 
-            for (int i = 255; i < totalFrames; i++){
+            for (int i = 0; i < totalFrames; i++){
 
                 float zoom = getZoom(i, framesPerZoomDouble);
 
@@ -86,7 +86,7 @@ namespace Mandelbrot_Animator
 
         private static int getMaxIt(float zoom)
         {
-            float maxIt = 100 + zoom / 2;
+            float maxIt = 100 + zoom / 4;
             return (int)Math.Round(maxIt);
         }
 
