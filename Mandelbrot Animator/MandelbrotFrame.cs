@@ -4,24 +4,24 @@ using Wacton.Unicolour;
 
 namespace Mandelbrot_Animator
 {
-    internal class MandelbrotFrame(int canvasWidth = 1920, int canvasHeight = 1080, double centreRe = 0, double centreIm = 0, float zoom = 1, int maxIterations = 100, int samplesPerPixel = 3)
+    internal class MandelbrotFrame(int canvasWidth = 1920, int canvasHeight = 1080, double centreRe = 0, double centreIm = 0, float zoom = 1, int maxIterations = 100, int pixelResolution = 3)
     {
         int[, , ] iterationMap;
 
         public Bitmap processImage()
         {
-            iterationMap = new int[canvasWidth, canvasHeight, samplesPerPixel * samplesPerPixel];
+            iterationMap = new int[canvasWidth, canvasHeight, pixelResolution * pixelResolution];
 
-            float dx = (float)1 / samplesPerPixel;
+            float dx = (float)1 / pixelResolution;
             float halfDx = dx / 2;
 
             for (int x = 0; x < canvasWidth; x++)
             {
                 for (int y = 0; y < canvasHeight; y++)
                 {
-                    for (int px = 0; px < samplesPerPixel; px++)
+                    for (int px = 0; px < pixelResolution; px++)
                     {
-                        for (int py = 0; py < samplesPerPixel; py++)
+                        for (int py = 0; py < pixelResolution; py++)
                         {
                             float xPosition, yPosition;
                             double real, imaginary;
@@ -31,7 +31,7 @@ namespace Mandelbrot_Animator
 
                             (real, imaginary) = canvasToComplexPlane(xPosition, yPosition);
                             int iterations = getIterations(real, imaginary);
-                            iterationMap[x, y, py + px * samplesPerPixel] = iterations;
+                            iterationMap[x, y, py + px * pixelResolution] = iterations;
                         }
                     }
                 }
@@ -44,8 +44,8 @@ namespace Mandelbrot_Animator
             {
                 for (int y = 0; y < canvasHeight; y++)
                 {
-                    Unicolour[] colours = new Unicolour[samplesPerPixel * samplesPerPixel];
-                    for (int i = 0; i < samplesPerPixel * samplesPerPixel; i++)
+                    Unicolour[] colours = new Unicolour[pixelResolution * pixelResolution];
+                    for (int i = 0; i < pixelResolution * pixelResolution; i++)
                     {
                         colours[i] = getColour(iterationMap[x, y, i]);
                     }
