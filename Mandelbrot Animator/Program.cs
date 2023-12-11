@@ -21,10 +21,36 @@ namespace Mandelbrot_Animator
 
             int totalFrames = (int)Math.Round(animationTime * frameRate);
 
-
             Stopwatch stopwatch = new Stopwatch();
 
-            for (int i = totalFrames-1; i >= 0; i--){
+            // estimate the time-------------------------------------
+            /*
+            float tempZoom = getZoom(totalFrames, framesPerZoomDouble);
+
+            int tempMaxIt = getMaxIt(totalFrames, totalFrames, maxMaxIterations);
+
+            MandelbrotFrame tempM = new MandelbrotFrame(
+                960, 540,
+                centreRe,
+                centreIm,
+                tempZoom,
+                tempMaxIt,
+                3
+                );
+
+            stopwatch.Restart();
+            Bitmap tempImg = tempM.processImage();
+            stopwatch.Stop();
+            double totalSeconds = stopwatch.Elapsed.TotalSeconds;
+            totalSeconds /= 2;
+            totalSeconds *= totalSeconds;
+            float hours = (float)Math.Floor(totalSeconds / 3600);
+            Console.WriteLine("Estimated time: " + hours + "hr");
+            */
+            // ----------------------------------------------------
+
+
+            for (int i = 0; i < totalFrames; i++){
 
                 float zoom = getZoom(i, framesPerZoomDouble);
 
@@ -54,7 +80,6 @@ namespace Mandelbrot_Animator
                 img.Save($"C:\\AnimationFrames3\\4\\{frameName}.png");
                 
                 Console.WriteLine(numberName(i+1) + " / " + numberName(totalFrames));
-                Console.WriteLine("Time remaining is > " + (i) * (stopwatch.Elapsed.TotalSeconds / 60) + " min");
 
             }   
         }
