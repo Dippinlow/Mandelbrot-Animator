@@ -85,7 +85,7 @@ namespace Mandelbrot_Animator
             double brightness;
             if(iterations == maxIterations)
             {
-                return new Unicolour(ColourSpace.Hsb, 0, 0, 0);
+                brightness = 0;
             }
             else if (iterations < maxIterations /  3)
             {
