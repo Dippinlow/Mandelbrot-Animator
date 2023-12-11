@@ -4,12 +4,13 @@ using Wacton.Unicolour;
 
 namespace Mandelbrot_Animator
 {
-    internal class MandelbrotFrame(int canvasWidth = 1920, int canvasHeight = 1080, double centreRe = 0, double centreIm = 0, float zoom = 1, int maxIterations = 100, int pixelResolution = 3)
+    internal class MandelbrotFrame(double[] randCols, int canvasWidth = 1920, int canvasHeight = 1080, double centreRe = 0, double centreIm = 0, float zoom = 1, int maxIterations = 100, int pixelResolution = 3, float check = 4)
     {
         int[, , ] iterationMap;
 
         public Bitmap processImage()
         {
+            
             iterationMap = new int[canvasWidth, canvasHeight, pixelResolution * pixelResolution];
 
             float dx = (float)1 / pixelResolution;
@@ -80,17 +81,21 @@ namespace Mandelbrot_Animator
 
         private Unicolour getColour(int iterations)
         {
-            double hue = (double)iterations / maxIterations * 360 + 240;
-            double saturation = 1;
+            //double hue = (double)iterations / maxIterations * 360 + 240;
+;
+            double hue = randCols[iterations];
+            double saturation = 0.75;
             double brightness;
             if(iterations == maxIterations)
             {
-                return new Unicolour(ColourSpace.Hsb, 0, 0, 0);
+                brightness = 0;
             }
+            /*
             else if (iterations < maxIterations /  3)
             {
                 brightness = iterations / ((double)maxIterations / 3);
             }
+            */
             else
             {
                 brightness = 1;
@@ -113,7 +118,7 @@ namespace Mandelbrot_Animator
                 Za = newZa + real;
                 Zb = newZb + imaginary;
 
-                if (Za * Za + Zb * Zb > 4)
+                if (Za * Za + Zb * Zb > check)
                 {
                     return i;
                 }

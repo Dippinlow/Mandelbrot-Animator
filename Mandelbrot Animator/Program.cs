@@ -7,32 +7,50 @@ namespace Mandelbrot_Animator
     {
         static void Main()
         {
-            int frameRate = 25;
-            float secondsPerZoomDouble = 1;
-            float animationTime = 20;
 
-            double centreRe = -0.7585453376717782;
-            double centreIm = -0.06508398694610079;
 
-            int framesPerZoomDouble = (int)Math.Round(secondsPerZoomDouble * frameRate);
+            
 
+
+            int frameRate = 24;
+            //float secondsPerZoomDouble = 1;
+            float animationTime = 4;
+
+            double centreRe = 0;
+            double centreIm = 0;
+
+            //int framesPerZoomDouble = (int)Math.Round(secondsPerZoomDouble * frameRate);
+            float zoom = 1;
+            int maxIt = 50;
             int totalFrames = (int)Math.Round(animationTime * frameRate);
+
+
+            double[] randomColours = new double[maxIt + 1];
+            Random rand = new Random();
+
+            for (int i = 0; i < maxIt; i++)
+            {
+                randomColours[i] = rand.NextDouble() * 360;
+            }
+
 
             Stopwatch stopwatch = new Stopwatch();
 
             for (int i = 0; i < totalFrames; i++){
 
-                float zoom = getZoom(i, framesPerZoomDouble);
+                //float zoom = getZoom(i, framesPerZoomDouble);
 
-                int maxIt = getMaxIt(i);
-                
+                //int maxIt = getMaxIt(i);
+                float check = (float)i / totalFrames * 4;
                 MandelbrotFrame m = new MandelbrotFrame(
+                    randomColours,
                     1920, 1080, 
                     centreRe, 
                     centreIm, 
                     zoom, 
                     maxIt, 
-                    2
+                    3,
+                    check
                     );
 
                 stopwatch.Restart();
@@ -44,10 +62,10 @@ namespace Mandelbrot_Animator
                 string frameNameLong = frameName + " / " + numberName(totalFrames);
 
 
-                img.Save($"C:\\AnimationFrames\\3\\{frameName}.png");
+                img.Save($"C:\\AnimationFrames2\\5\\{frameName}.png");
 
-                img = addData(img, centreRe, centreIm, zoom, maxIt, processingTime, frameNameLong);
-                img.Save($"C:\\AnimationFrames\\4\\{frameName}.png");
+                img = addData(img, centreRe, centreIm, check, maxIt, processingTime, frameNameLong);
+                img.Save($"C:\\AnimationFrames2\\6\\{frameName}.png");
 
                 Console.WriteLine(numberName(i) + " / " + numberName(totalFrames));
 
@@ -56,7 +74,7 @@ namespace Mandelbrot_Animator
         }
 
 
-        private static Bitmap addData(Bitmap img, double centreRe, double centreIm, float zoom, int maxIt, float processingTime, string name)
+        private static Bitmap addData(Bitmap img, double centreRe, double centreIm, float check, int maxIt, float processingTime, string name)
         {
             Graphics g = Graphics.FromImage(img);
             Font f = new Font("Comic sans", 24);
@@ -68,7 +86,7 @@ namespace Mandelbrot_Animator
             string text = $"Frame: {name}\n"
                         + $"CentreRe: {centreRe}\n"
                         + $"CentreIm: {centreIm}\n"
-                        + $"Zoom: {zoom}\n"
+                        + $"Check: {check}\n"
                         + $"Max Iterations: {maxIt}\n"
                         + $"Time to process frame: {processingTime}s";
 
