@@ -7,12 +7,15 @@ namespace Mandelbrot_Animator
     {
         static void Main()
         {
-            int frameRate = 25;
-            float secondsPerZoomDouble = 1;
-            float animationTime = 20;
+            int frameRate = 12;
+            float secondsPerZoomDouble = 0.5f;
+            float animationTime = 21;
 
-            double centreRe = -0.7585453376717782;
-            double centreIm = -0.06508398694610079;
+            // 42 doubles
+            int maxMaxIterations = 10000;
+            
+            double centreRe = -1.6284130817393883;
+            double centreIm = 0.0003887182317460733;
 
             int framesPerZoomDouble = (int)Math.Round(secondsPerZoomDouble * frameRate);
 
@@ -24,7 +27,7 @@ namespace Mandelbrot_Animator
 
                 float zoom = getZoom(i, framesPerZoomDouble);
 
-                int maxIt = getMaxIt(i);
+                int maxIt = getMaxIt(i, totalFrames, maxMaxIterations);
                 
                 MandelbrotFrame m = new MandelbrotFrame(
                     1920, 1080, 
@@ -44,10 +47,10 @@ namespace Mandelbrot_Animator
                 string frameNameLong = frameName + " / " + numberName(totalFrames);
 
 
-                img.Save($"C:\\AnimationFrames\\3\\{frameName}.png");
+                img.Save($"C:\\AnimationFrames3\\1\\{frameName}.png");
 
                 img = addData(img, centreRe, centreIm, zoom, maxIt, processingTime, frameNameLong);
-                img.Save($"C:\\AnimationFrames\\4\\{frameName}.png");
+                img.Save($"C:\\AnimationFrames3\\2\\{frameName}.png");
 
                 Console.WriteLine(numberName(i) + " / " + numberName(totalFrames));
 
@@ -59,7 +62,7 @@ namespace Mandelbrot_Animator
         private static Bitmap addData(Bitmap img, double centreRe, double centreIm, float zoom, int maxIt, float processingTime, string name)
         {
             Graphics g = Graphics.FromImage(img);
-            Font f = new Font("Comic sans", 24);
+            Font f = new Font("Comsrtic sans", 24);
             Brush b1 = new SolidBrush(Color.Black);
             Brush b2 = new SolidBrush(Color.White);
 
@@ -84,13 +87,10 @@ namespace Mandelbrot_Animator
 
         }
 
-        private static int getMaxIt(int frameNumber)
+        private static int getMaxIt(int frameNumber, int totalFrames, int maxMaxIt)
         {
-            //float maxIt = 100 + zoom / 4;
-            //return (int)Math.Round(maxIt);
-
-            float maxIt = (float)9.8 * frameNumber + 100;
-            return (int)Math.Round(maxIt);
+            float maxIt = (float)frameNumber / totalFrames * (maxMaxIt-10);
+            return (int)Math.Round(maxIt) + 10;
         }
 
         private static string numberName(int number)
