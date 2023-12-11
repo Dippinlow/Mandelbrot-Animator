@@ -30,7 +30,7 @@ namespace Mandelbrot_Animator
                 int maxIt = getMaxIt(i, totalFrames, maxMaxIterations);
                 
                 MandelbrotFrame m = new MandelbrotFrame(
-                    1920, 1080, 
+                    200, 200, 
                     centreRe, 
                     centreIm, 
                     zoom, 
