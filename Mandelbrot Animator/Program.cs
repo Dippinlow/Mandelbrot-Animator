@@ -54,7 +54,7 @@ namespace Mandelbrot_Animator
                 img.Save($"C:\\AnimationFrames3\\4\\{frameName}.png");
                 
                 Console.WriteLine(numberName(i+1) + " / " + numberName(totalFrames));
-                Console.WriteLine("Time remaining is > " + stopwatch.ElapsedMilliseconds / 60000 + " min");
+                Console.WriteLine("Time remaining is > " + (totalFrames-i) * (stopwatch.ElapsedMilliseconds / 60000) + " min");
 
             }   
         }
