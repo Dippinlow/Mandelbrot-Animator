@@ -30,12 +30,12 @@ namespace Mandelbrot_Animator
                 int maxIt = getMaxIt(i, totalFrames, maxMaxIterations);
                 
                 MandelbrotFrame m = new MandelbrotFrame(
-                    100, 100, 
+                    1920, 1080, 
                     centreRe, 
                     centreIm, 
                     zoom, 
                     maxIt, 
-                    1
+                    2
                     );
 
                 stopwatch.Restart();
@@ -48,10 +48,10 @@ namespace Mandelbrot_Animator
 
                 
                 img.Save($"C:\\AnimationFrames3\\1\\{frameName}.png");
-                /*
+                
                 img = addData(img, centreRe, centreIm, zoom, maxIt, processingTime, frameNameLong);
                 img.Save($"C:\\AnimationFrames3\\2\\{frameName}.png");
-                */
+                
                 Console.WriteLine(numberName(i+1) + " / " + numberName(totalFrames));
 
 
