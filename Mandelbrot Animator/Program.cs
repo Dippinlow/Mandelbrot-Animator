@@ -7,7 +7,7 @@ namespace Mandelbrot_Animator
     {
         static void Main()
         {
-            int frameRate = 12;
+            int frameRate = 24;
             float secondsPerZoomDouble = 0.5f;
             float animationTime = 21;
 
@@ -21,6 +21,7 @@ namespace Mandelbrot_Animator
 
             int totalFrames = (int)Math.Round(animationTime * frameRate);
 
+
             Stopwatch stopwatch = new Stopwatch();
 
             for (int i = 0; i < totalFrames; i++){
@@ -30,12 +31,12 @@ namespace Mandelbrot_Animator
                 int maxIt = getMaxIt(i, totalFrames, maxMaxIterations);
                 
                 MandelbrotFrame m = new MandelbrotFrame(
-                    200, 200, 
+                    960, 540, 
                     centreRe, 
                     centreIm, 
                     zoom, 
                     maxIt, 
-                    2
+                    3
                     );
 
                 stopwatch.Restart();
@@ -47,13 +48,13 @@ namespace Mandelbrot_Animator
                 string frameNameLong = numberName(i+1) + " / " + numberName(totalFrames);
 
                 
-                img.Save($"C:\\AnimationFrames3\\1\\{frameName}.png");
+                img.Save($"C:\\AnimationFrames3\\3\\{frameName}.png");
                 
                 img = addData(img, centreRe, centreIm, zoom, maxIt, processingTime, frameNameLong);
-                img.Save($"C:\\AnimationFrames3\\2\\{frameName}.png");
+                img.Save($"C:\\AnimationFrames3\\4\\{frameName}.png");
                 
                 Console.WriteLine(numberName(i+1) + " / " + numberName(totalFrames));
-
+                Console.WriteLine("Time remaining is > " + stopwatch.ElapsedMilliseconds / 60000 + " min");
 
             }   
         }
