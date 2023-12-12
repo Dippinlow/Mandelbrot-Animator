@@ -50,7 +50,7 @@ namespace Mandelbrot_Animator
             // ----------------------------------------------------
 
 
-            for (int i = 0; i < totalFrames; i++){
+            for (int i = 460; i < totalFrames-6; i++){
 
                 float zoom = getZoom(i, framesPerZoomDouble);
 
